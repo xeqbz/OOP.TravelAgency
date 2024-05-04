@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TravelAgencyApp.ViewModels"
+             x:Class="TravelAgencyApp.Views.ProfileView"
+             x:DataType="viewmodel:ProfileViewModel"
+             Shell.NavBarIsVisible="False"
+             Title="Profile"
+             BackgroundColor="{StaticResource Secondary}">
+
+    <Grid 
+        BackgroundColor="{StaticResource Secondary}"
+        RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+        Padding="20"
+        RowSpacing="10">
+
+        <Border 
+            Grid.ColumnSpan="3"
+            Grid.Row="0"
+            HeightRequest="150"
+            WidthRequest="150"
+            HorizontalOptions="Center"
+            BackgroundColor="{StaticResource Secondary}" 
+            StrokeThickness="2">
+
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="100"/>
+            </Border.StrokeShape>
+
+            <Image
+                Source="user.png" 
+                Aspect="AspectFill"/>
+        </Border>
+
+        <Border
+            Grid.Row="1"
+            HeightRequest="100"
+            Padding="10"
+            BackgroundColor="WhiteSmoke">
+            <Border.StrokeShape>
+                <RoundRectangle
+                    CornerRadius="20"></RoundRectangle>
+            </Border.StrokeShape>
+            <Grid
+                ColumnDefinitions="275,*">
+                <Label
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    TextColor="Black"
+                    Grid.Column="0"
+                    Text="{Binding UserEmail,
+             StringFormat='Email:   {0}'}"/>
+
+                <ImageButton
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsNotBusy}"
+                    HeightRequest="55"
+                    WidthRequest="55"
+                    Padding="7"
+                    CornerRadius="7"
+                    Source="Edit.png"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding ChangeEmailCommand}">
+                </ImageButton>
+            </Grid>
+        </Border>
+
+
+
+        <Border
+            Grid.Row="2"
+            HeightRequest="100"
+            Padding="10"
+            BackgroundColor="WhiteSmoke">
+            <Border.StrokeShape>
+                <RoundRectangle
+                    CornerRadius="20"></RoundRectangle>
+            </Border.StrokeShape>
+            <Grid
+                ColumnDefinitions="275,*">
+                <Label
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    TextColor="Black"
+                    Grid.Column="0"
+                    Text="{Binding UserPassword,
+             StringFormat='Password:   {0}'}"/>
+
+                <ImageButton
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsNotBusy}"
+                    HeightRequest="55"
+                    WidthRequest="55"
+                    Padding="7"
+                    CornerRadius="7"
+                    Source="Edit.png"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding ChangePasswordCommand}">
+                </ImageButton>
+            </Grid>
+        </Border>
+
+        <Border
+            Grid.Row="3"
+            HeightRequest="100"
+            Padding="10"
+            BackgroundColor="WhiteSmoke">
+            <Border.StrokeShape>
+                <RoundRectangle
+                    CornerRadius="20"></RoundRectangle>
+            </Border.StrokeShape>
+            <Grid
+                ColumnDefinitions="275,*">
+                <Label
+                    VerticalOptions="Center"
+                    FontSize="20"
+                    TextColor="Black"
+                    Grid.Column="0"
+                    Text="{Binding Balance,
+             StringFormat='Balance:   {0}'}"/>
+
+                <ImageButton
+                    Grid.Column="1"
+                    IsEnabled="{Binding IsNotBusy}"
+                    HeightRequest="55"
+                    WidthRequest="55"
+                    Padding="7"
+                    CornerRadius="7"
+                    Source="wallet.png"
+                    BackgroundColor="{StaticResource Primary}"
+                    Command="{Binding PutMoneyOnBalanceCommand}">
+                </ImageButton>
+            </Grid>
+        </Border>
+
+        <Button
+            Grid.Row="6"
+            WidthRequest="200"
+            Grid.ColumnSpan="2"
+            Text="Log out from profile"
+            IsEnabled="{Binding IsNotBusy}"
+            BackgroundColor="{StaticResource Primary}"
+            Command="{Binding LogOutCommand}"
+            TextColor="White">
+        </Button>
+
+        <ActivityIndicator
+            IsVisible="{Binding IsBusy}"
+            IsRunning="{Binding IsBusy}"
+            Grid.RowSpan="7"
+            Grid.ColumnSpan="2"
+            BackgroundColor="Transparent"
+            Color="{StaticResource PrimaryDark}"
+            HeightRequest="100"
+            WidthRequest="100"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"/>
+
+    </Grid>
+
+</ContentPage>
